@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,9 +26,10 @@ public class Sale implements Serializable{
 	private Integer visited;
 	private Integer deals;
 	private Double amount;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate date;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "seller_id")
 	private Seller seller;
@@ -77,11 +79,12 @@ public class Sale implements Serializable{
 		this.amount = amount;
 	}
 
-	public LocalDate getDate() {
+	@JsonIgnore
+	public LocalDate getLocalDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setLocalDate(LocalDate date) {
 		this.date = date;
 	}
 
