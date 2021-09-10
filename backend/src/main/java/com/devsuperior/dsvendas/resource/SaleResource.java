@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.dsvendas.model.Sale;
+import com.devsuperior.dsvendas.model.dto.TaxaDeSucessoDTO;
+import com.devsuperior.dsvendas.model.dto.TodasAsVendasEmPorcentagemDTO;
 import com.devsuperior.dsvendas.service.SaleService;
 
 @RestController
@@ -36,4 +38,14 @@ public class SaleResource {
 		return ResponseEntity.ok().body(saleService.findById(id));
 	}
 
+	@GetMapping("/buscarTodasAsvendasEmPorcentagem")
+	public ResponseEntity<List<TodasAsVendasEmPorcentagemDTO>> buscarTodasAsVendasEmPorcentagem(){
+		return ResponseEntity.ok().body(saleService.buscarTodasAsVendasEmPorcentagem());
+	}
+	
+	@GetMapping("/buscarTaxaDeSucesso")
+	public ResponseEntity<List<TaxaDeSucessoDTO>> buscarTaxaDeSucesso(){
+		return ResponseEntity.ok().body(saleService.buscarTaxaDeSucesso());
+	}
+	
 }

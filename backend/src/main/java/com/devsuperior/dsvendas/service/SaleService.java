@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.dsvendas.model.Sale;
+import com.devsuperior.dsvendas.model.dto.TaxaDeSucessoDTO;
+import com.devsuperior.dsvendas.model.dto.TodasAsVendasEmPorcentagemDTO;
 import com.devsuperior.dsvendas.repository.SaleRepository;
 import com.devsuperior.dsvendas.repository.SellerRepository;
 
@@ -36,5 +38,16 @@ public class SaleService {
 	public Sale findById(Long id) {
 		return saleRepository.findById(id).orElseThrow(() -> new RuntimeException("Object not find by id = " + id));
 	}
+	
+	@Transactional(readOnly = true)
+	public List<TodasAsVendasEmPorcentagemDTO> buscarTodasAsVendasEmPorcentagem(){
+		return saleRepository.buscarTodasAsVendasEmPorcentagem();
+	}
+	
+	public List<TaxaDeSucessoDTO> buscarTaxaDeSucesso(){
+		return saleRepository.buscarTaxaDeSucesso();
+	}
+	
+	
 
 }
